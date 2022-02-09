@@ -1,1 +1,10 @@
 /* Other rules */
+/* HEADER */
+.header {
+  height: 50px;
+  background-color: tomato;
+}
+.hero {
+  height: 200px;
+  background-color: aquamarine;
+}
