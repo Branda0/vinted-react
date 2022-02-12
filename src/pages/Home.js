@@ -1,9 +1,8 @@
-import "./Home.css";
+import tear from "../assets/svg/tear.svg";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import Hero from "../components/Hero";
 import Product from "../components/Product";
 
 const Home = () => {
@@ -27,9 +26,11 @@ const Home = () => {
   return isLoading ? (
     <span>Page Loading</span>
   ) : (
-    <div>
-      <Hero />
-      <div className="products-container">
+    <div className="content-container">
+      <div className="hero-container">
+        <img src={tear} alt="hero-bottom-tear" className="tear" />
+      </div>
+      <div className="container">
         {data.offers.map((product) => {
           return <Product key={product._id} product={product} />;
         })}

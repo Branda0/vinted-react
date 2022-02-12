@@ -1,5 +1,3 @@
-import "./Offer.css";
-
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -26,12 +24,12 @@ const Offer = () => {
   return isLoading ? (
     <span>Page Loading</span>
   ) : (
-    <div>
-      <div className="main-content-container">
-        <div className="img-container">
-          <img alt="user" src={data.product_image.secure_url} />
+    <div className="offer-container">
+      <div className="container">
+        <div className="imgs-container" style={{ backgroundImage: `url(${data.product_image.secure_url})` }}>
+          <img src="" alt="" />
         </div>
-        <div className="info-container">
+        <div className="infos-container">
           <span className="price">{data.product_price} €</span>
           <div className="infos">
             {data.product_details.map((elem) => {
@@ -47,7 +45,7 @@ const Offer = () => {
           <span className="product-description">{data.product_description}</span>
           <div className="user">
             <img className="user-photo" alt="user" src={data.owner.account.avatar.secure_url} />
-            <span>{data.owner.account.username}</span>
+            <span className="user-name">{data.owner.account.username}</span>
           </div>
           <button className="acheter-btn">Acheter</button>
         </div>

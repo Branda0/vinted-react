@@ -1,25 +1,49 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Cookies from "js-cookie";
+
+import axios from "axios";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Signup = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Signup = ({ setToken, setSignupModal, setLoginModal }) => {
+  const [name, setName] = useState("jean");
+  const [email, setEmail] = useState("jean@gmail.com");
+  const [password, setPassword] = useState("jean");
   const [newsletter, setNewsletter] = useState(false);
 
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
+  const [signupError, setSignupError] = useState("");
+
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/signup", {
+        email: email,
+        username: name,
+        password: password,
+        newsletter: newsletter,
+      });
+      setToken(response.data.token);
+      setSignupModal(false);
+      // setSignupError("");
+    } catch (error) {
+      if (error.response.status === 400) {
+        setSignupError("Paramètres manquants");
+      } else if (error.response.status === 409) {
+        setSignupError("Cet email a déjà un compte !");
+      }
+    }
   };
 
   return (
-    <div className="container">
-      <div className="signup-container">
+    <div className="modal-container">
+      <div className="signup-modal">
+        <FontAwesomeIcon icon="xmark" className="close-modal" onClick={() => setSignupModal(false)} />
         <h1>S'inscrire</h1>
         <form onSubmit={handleSubmit}>
           <input
@@ -41,6 +65,7 @@ const Signup = () => {
           <div className="form-input-password">
             <input
               className="input"
+              value={password}
               type={passwordVisibility ? "text" : "password"}
               placeholder="Mot de passe"
               onChange={(event) => {
@@ -56,7 +81,7 @@ const Signup = () => {
               value={newsletter}
               type="checkbox"
               onChange={(event) => {
-                setNewsletter(!newsletter);
+                setNewsletter(event.target.checked);
               }}
             />
             <span>S'inscrire à notre newsletter</span>
@@ -66,10 +91,16 @@ const Signup = () => {
             En m'inscrivant je confirme avoir lu et accepté les Termes & Conditions et Politique de
             Confidentialité de Vinted. Je confirme avoir au moins 18 ans.
           </p>
-
+          {signupError && <span className="error-msg">{signupError}</span>}
           <button type="submit">S'inscrire</button>
         </form>
-        <span onClick={() => navigate("/login")} className="bottom-link">
+        <span
+          className="bottom-link"
+          onClick={() => {
+            setSignupModal(false);
+            setLoginModal(true);
+          }}
+        >
           Tu as déjà un compte ? Connecte-toi !
         </span>
       </div>
