@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Offer = () => {
@@ -10,10 +9,12 @@ const Offer = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      /////////////////////////////////////
-      // UTILISER SA PROPRE DB PLUS TARD //
-      /////////////////////////////////////
+      // Own back
+      // const response = await axios.get(`https://brandao-vinted.herokuapp.com/offer/${id}`);
+
+      // LeReacteur back
       const response = await axios.get(`https://lereacteur-vinted-api.herokuapp.com/offer/${id}`);
+
       setData(response.data);
       setIsLoading(false);
     };
@@ -44,7 +45,7 @@ const Offer = () => {
           <span className="product-name">{data.product_name}</span>
           <span className="product-description">{data.product_description}</span>
           <div className="user">
-            <img className="user-photo" alt="user" src={data.owner.account.avatar.secure_url} />
+            <img className="user-photo" alt="user" src={data.owner.account.avatar?.secure_url} />
             <span className="user-name">{data.owner.account.username}</span>
           </div>
           <button className="acheter-btn">Acheter</button>

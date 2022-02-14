@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import Cookies from "js-cookie";
 
 import axios from "axios";
 
+import { useNavigate } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Login = ({ setToken, setLoginModal, setSignupModal }) => {
+const Login = ({ setToken, setLoginModal, setSignupModal, toPublish, setToPublish }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,9 +23,18 @@ const Login = ({ setToken, setLoginModal, setSignupModal }) => {
         email: email,
         password: password,
       });
+
+      // const response = await axios.post("https://brandao-vinted.herokuapp.com/user/login", {
+      //   email: email,
+      //   password: password,
+      // });
+
       setToken(response.data.token);
       setLoginModal(false);
-      // setLoginError("");
+      if (toPublish) {
+        navigate("/publish");
+        setToPublish(false);
+      }
     } catch (error) {
       console.log({ error });
       if (error.response.status === 400 || error.response.status === 401) {
@@ -38,7 +46,14 @@ const Login = ({ setToken, setLoginModal, setSignupModal }) => {
   return (
     <div className="modal-container">
       <div className="login-modal">
-        <FontAwesomeIcon icon="xmark" className="close-modal" onClick={() => setLoginModal(false)} />
+        <FontAwesomeIcon
+          icon="xmark"
+          className="close-modal"
+          onClick={() => {
+            setLoginModal(false);
+            setToPublish(false);
+          }}
+        />
         <h1>Se connecter</h1>
         <form onSubmit={handleSubmit}>
           <input

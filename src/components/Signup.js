@@ -1,23 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import Cookies from "js-cookie";
 
 import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Signup = ({ setToken, setSignupModal, setLoginModal }) => {
-  const [name, setName] = useState("jean");
-  const [email, setEmail] = useState("jean@gmail.com");
-  const [password, setPassword] = useState("jean");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
 
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
   const [signupError, setSignupError] = useState("");
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,6 +23,14 @@ const Signup = ({ setToken, setSignupModal, setLoginModal }) => {
         password: password,
         newsletter: newsletter,
       });
+
+      // const response = await axios.post("https://brandao-vinted.herokuapp.com/user/signup", {
+      //   email: email,
+      //   username: name,
+      //   password: password,
+      //   newsletter: newsletter,
+      // });
+
       setToken(response.data.token);
       setSignupModal(false);
       // setSignupError("");

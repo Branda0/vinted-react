@@ -1,32 +1,46 @@
 import logo from "../assets/img/logo.png";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Cookies from "js-cookie";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const Header = ({ isLogged, setToken, setSignupModal, setLoginModal }) => {
+const Header = ({
+  setPage,
+  searchBar,
+  setSearchBar,
+  isLogged,
+  setToken,
+  setSignupModal,
+  setLoginModal,
+  setToPublish,
+}) => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setLoginModal(true);
-  };
-
-  const handleSignup = () => {
-    setSignupModal(true);
-  };
-
-  const handleDisconect = () => {
-    setToken(null);
+  const handlePublishBtn = () => {
+    if (isLogged) {
+      navigate("/publish");
+    } else {
+      setToPublish(true);
+      setLoginModal(true);
+    }
   };
 
   return (
     <div className="header">
       <div className="container">
         <div className="left-header">
-          <img className="header-logo" src={logo} alt="logo" />
+          <Link to="/">
+            <img className="header-logo" src={logo} alt="logo" />
+          </Link>
           <div className="search-bar">
-            <input type="text" placeholder="Recherche des articles" />
+            <input
+              type="text"
+              value={searchBar}
+              placeholder="Recherche des articles"
+              onChange={(event) => {
+                setSearchBar(event.target.value);
+                setPage(1);
+              }}
+            />
             <div className="icon-container">
               <FontAwesomeIcon className="search-icon" icon="magnifying-glass" />
             </div>
@@ -34,16 +48,24 @@ const Header = ({ isLogged, setToken, setSignupModal, setLoginModal }) => {
         </div>
         <div className="right-header">
           {isLogged ? (
-            <button onClick={handleDisconect} className="disconnect-btn">
+            <button
+              onClick={() => {
+                setToken(null);
+                navigate("/");
+              }}
+              className="disconnect-btn"
+            >
               Se déconnecter
             </button>
           ) : (
             <div className="loggin-signup-btn-container ">
-              <button onClick={handleSignup}>S'inscrire</button>
-              <button onClick={handleLogin}>Se connecter</button>
+              <button onClick={() => setSignupModal(true)}>S'inscrire</button>
+              <button onClick={() => setLoginModal(true)}>Se connecter</button>
             </div>
           )}
-          <button className="sale-btn">Vends tes articles</button>
+          <button className="sale-btn" onClick={handlePublishBtn}>
+            Vends tes articles
+          </button>
         </div>
       </div>
     </div>

@@ -4,11 +4,11 @@ const Product = ({ product }) => {
   return (
     <Link className="product-container" to={`/offer/${product._id}`}>
       <div className="product-owner">
-        <img className="user-photo" alt="user" src={product.owner.account.avatar.secure_url} />
+        <img className="user-photo" alt="user" src={product.owner.account.avatar?.secure_url} />
         <span className="user-name"> {product.owner.account.username}</span>
       </div>
       <div className="product-image-container">
-        <img className="product-image" alt="user" src={product.product_image.secure_url} />
+        <img className="product-image" alt="product" src={product.product_image.secure_url} />
       </div>
       <div className="product-details">
         <span className="product-price">{product.product_price} €</span>
