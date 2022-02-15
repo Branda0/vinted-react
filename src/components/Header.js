@@ -34,7 +34,7 @@ const Header = ({
           <div className="search-bar">
             <input
               type="text"
-              value={searchBar}
+              // value={searchBar}
               placeholder="Recherche des articles"
               onChange={(event) => {
                 setSearchBar(event.target.value);
