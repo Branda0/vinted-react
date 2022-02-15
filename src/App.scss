@@ -676,13 +676,14 @@ body {
         }
       }
 
-      .acheter-btn {
+      .buy-btn {
         background-color: #09b0ba;
         height: 36px;
         color: white;
         border: none;
         border-radius: 5px;
         font-size: 16px;
+        cursor: pointer;
       }
     }
   }
@@ -815,6 +816,94 @@ body {
   }
 
   // background-color: blue;
+}
+
+//PAYMENT PAGE
+.payment-container {
+  background-color: #ebecee;
+  height: 100%;
+  .container {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    width: 600px;
+    background-color: white;
+
+    h1 {
+      font-size: 20px;
+      padding: 30px 30px 10px 30px;
+    }
+
+    .details {
+      padding: 30px 30px;
+      border-bottom: 1px solid #e7e7e7;
+
+      .line {
+        display: flex;
+        justify-content: space-between;
+
+        span {
+          font-size: 14px;
+          line-height: 30px;
+          color: #666666;
+        }
+      }
+    }
+
+    .total {
+      padding-bottom: 30px;
+      margin: 40px 30px 20px 30px;
+      border-bottom: 1px solid #e7e7e7;
+      div {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 40px;
+      }
+
+      p {
+        font-size: 14px;
+        text-align: justify;
+        line-height: 18px;
+        b {
+          font-weight: 600;
+        }
+      }
+    }
+    .checkoutForm {
+      padding: 30px 30px;
+
+      .spinner-icon {
+        font-size: 14px;
+        animation: rotation 0.02s infinite linear;
+      }
+
+      .payment-success {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        span {
+          width: 100%;
+          // background-color: green;
+          font-size: 20px;
+          text-align: center;
+        }
+      }
+
+      button {
+        background-color: #01bb6a;
+        height: 100%;
+        width: 100%;
+        border: none;
+        color: white;
+        font-size: 18px;
+        border-radius: 5px;
+        margin-top: 30px;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 // .filter-bar {

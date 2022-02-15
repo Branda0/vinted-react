@@ -4,9 +4,10 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import Cookies from "js-cookie";
+
 import axios from "axios";
 
-const Publish = ({ setPublishValidateModal, setLoginModal }) => {
+const Publish = ({ setPublishValidateModal, isLogged }) => {
   const [picture, setPicture] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -63,7 +64,7 @@ const Publish = ({ setPublishValidateModal, setLoginModal }) => {
     }
   };
 
-  return !token ? (
+  return !isLogged ? (
     <Navigate to="/" state={{ toLogin: true }} />
   ) : (
     <div className="publish-container">
@@ -74,7 +75,7 @@ const Publish = ({ setPublishValidateModal, setLoginModal }) => {
             <div className="photo-upload">
               <div className="drop-zone">
                 <div className="add-photo-input">
-                  <label for="file" className="input-label">
+                  <label htmlFor="file" className="input-label">
                     <FontAwesomeIcon icon="plus" className="plus-icon" />
                     <span>Ajoute une photo</span>
                   </label>

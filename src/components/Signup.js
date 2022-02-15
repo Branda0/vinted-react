@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Signup = ({ setToken, setSignupModal, setLoginModal }) => {
+const Signup = ({ setTokens, setSignupModal, setLoginModal }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,8 +30,8 @@ const Signup = ({ setToken, setSignupModal, setLoginModal }) => {
       //   password: password,
       //   newsletter: newsletter,
       // });
-
-      setToken(response.data.token);
+      console.log(response.data);
+      setTokens(response.data.token, response.data._id);
       setSignupModal(false);
       // setSignupError("");
     } catch (error) {

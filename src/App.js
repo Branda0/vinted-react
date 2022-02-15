@@ -8,6 +8,7 @@ import {
   faCaretUp,
   faCaretDown,
   faPlus,
+  faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useEffect } from "react";
@@ -20,6 +21,7 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Publish from "./pages/Publish";
 import NotFound from "./pages/NotFound";
+import Payment from "./pages/Payment";
 
 //Components
 import Header from "./components/Header";
@@ -27,17 +29,20 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import PublishValidate from "./components/PublishValidate";
 
-library.add(faEye, faXmark, faMagnifyingGlass, faCaretUp, faCaretDown, faPlus);
+library.add(faEye, faXmark, faMagnifyingGlass, faCaretUp, faCaretDown, faSpinner, faPlus);
 
 function App() {
-  const [isLogged, setIsLogged] = useState(Cookies.get("userToken") || false);
+  const [isLogged, setIsLogged] = useState(Cookies.get("userToken") ? true : false);
+
   const [signupModal, setSignupModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [publishValidateModal, setPublishValidateModal] = useState(false);
+
   const [toPublish, setToPublish] = useState(false);
+  const [toPayment, setToPayment] = useState(false);
 
   const storedPage = Number(localStorage.getItem("page"));
-  const storedSearchBar = String(localStorage.getItem("searchBar"));
+  const storedSearchBar = localStorage.getItem("searchBar");
   const storedSort = String(localStorage.getItem("sort"));
   const storedLimit = Number(localStorage.getItem("limit"));
   const storedPriceMin = Number(localStorage.getItem("priceMin"));
@@ -49,9 +54,6 @@ function App() {
   const [limit, setLimit] = useState(storedLimit || 16);
   const [prices, setPrices] = useState([storedPriceMin || 0, storedPriceMax || 100]);
 
-  console.log(searchBar);
-  console.log(typeof searchBar);
-
   useEffect(() => {
     localStorage.setItem("page", Number(page));
     localStorage.setItem("searchBar", String(searchBar));
@@ -61,12 +63,14 @@ function App() {
     localStorage.setItem("priceMax", Number(prices[1]));
   }, [searchBar, page, sort, limit, prices]);
 
-  const setToken = (token) => {
+  const setTokens = (token, userId) => {
     if (token) {
       Cookies.set("userToken", token, { expires: 7 });
+      Cookies.set("userId", userId, { expires: 7 });
       setIsLogged(true);
     } else {
       Cookies.remove("userToken");
+      Cookies.remove("userId");
       setIsLogged(false);
     }
   };
@@ -79,22 +83,24 @@ function App() {
           searchBar={searchBar}
           setSearchBar={setSearchBar}
           isLogged={isLogged}
-          setToken={setToken}
+          setTokens={setTokens}
           setSignupModal={setSignupModal}
           setLoginModal={setLoginModal}
           setToPublish={setToPublish}
         />
         {loginModal && (
           <Login
-            setToken={setToken}
+            setTokens={setTokens}
             setLoginModal={setLoginModal}
             setSignupModal={setSignupModal}
             toPublish={toPublish}
             setToPublish={setToPublish}
+            toPayment={toPayment}
+            setToPayment={setToPayment}
           />
         )}
         {signupModal && (
-          <Signup setToken={setToken} setLoginModal={setLoginModal} setSignupModal={setSignupModal} />
+          <Signup setTokens={setTokens} setLoginModal={setLoginModal} setSignupModal={setSignupModal} />
         )}
         {publishValidateModal && (
           <PublishValidate
@@ -120,17 +126,22 @@ function App() {
               />
             }
           />
-          <Route path="/offer/:id" element={<Offer />} />
+          <Route
+            path="/offer/:id"
+            element={<Offer isLogged={isLogged} setLoginModal={setLoginModal} setToPayment={setToPayment} />}
+          />
           <Route
             path="/publish"
             element={
               <Publish
+                isLogged={isLogged}
                 setPublishValidateModal={setPublishValidateModal}
                 publishValidateModal={publishValidateModal}
                 setLoginModal={setLoginModal}
               />
             }
           />
+          <Route path="/payment" element={<Payment isLogged={isLogged} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

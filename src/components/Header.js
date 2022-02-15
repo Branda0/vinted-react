@@ -5,10 +5,10 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Header = ({
   setPage,
-  searchBar,
   setSearchBar,
+  searchBar,
   isLogged,
-  setToken,
+  setTokens,
   setSignupModal,
   setLoginModal,
   setToPublish,
@@ -34,7 +34,7 @@ const Header = ({
           <div className="search-bar">
             <input
               type="text"
-              // value={searchBar}
+              value={searchBar}
               placeholder="Recherche des articles"
               onChange={(event) => {
                 setSearchBar(event.target.value);
@@ -50,7 +50,7 @@ const Header = ({
           {isLogged ? (
             <button
               onClick={() => {
-                setToken(null);
+                setTokens(null, null);
                 navigate("/");
               }}
               className="disconnect-btn"

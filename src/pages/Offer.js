@@ -1,11 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Offer = () => {
+const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +36,6 @@ const Offer = () => {
           <span className="price">{data.product_price} €</span>
           <div className="infos">
             {data.product_details.map((elem, index) => {
-              console.log("element ======>", elem);
               return (
                 <div key={index}>
                   <span className="type">{Object.keys(elem)[0]}</span>
@@ -49,7 +50,19 @@ const Offer = () => {
             <img className="user-photo" alt="user" src={data.owner.account.avatar?.secure_url} />
             <span className="user-name">{data.owner.account.username}</span>
           </div>
-          <button className="acheter-btn">Acheter</button>
+          <button
+            className="buy-btn"
+            onClick={() => {
+              if (isLogged) {
+                navigate("/payment", { state: { data } });
+              } else {
+                // setToPayment(true);
+                setLoginModal(true);
+              }
+            }}
+          >
+            Acheter
+          </button>
         </div>
       </div>
     </div>

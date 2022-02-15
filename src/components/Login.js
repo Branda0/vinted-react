@@ -6,7 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Login = ({ setToken, setLoginModal, setSignupModal, toPublish, setToPublish }) => {
+const Login = ({
+  setTokens,
+  setLoginModal,
+  setSignupModal,
+  toPublish,
+  setToPublish,
+  toPayment,
+  setToPayment,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,11 +37,15 @@ const Login = ({ setToken, setLoginModal, setSignupModal, toPublish, setToPublis
       //   password: password,
       // });
 
-      setToken(response.data.token);
+      setTokens(response.data.token, response.data._id);
       setLoginModal(false);
       if (toPublish) {
         navigate("/publish");
         setToPublish(false);
+      } else if (toPayment) {
+        //BESOIN DE FAIRE UN LIEN AVEC LES DONNEES DE L'ITEM A ACHETER POUR L'ENVOIE DE STATE DANS NAVIGATE
+        // navigate("/payment");
+        // setToPayment(false);
       }
     } catch (error) {
       console.log({ error });
