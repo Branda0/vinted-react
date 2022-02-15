@@ -710,7 +710,8 @@ body {
         background-color: white;
       }
 
-      input::placeholder {
+      input::placeholder,
+      textarea::placeholder {
         color: rgb(168, 168, 168);
       }
 
@@ -758,26 +759,31 @@ body {
         .input-container {
           display: flex;
           align-items: center;
-          padding-left: 30px;
+          padding: 20px 30px;
           height: 60px;
           border-bottom: 1px solid #cfd2d4;
 
           input,
+          textarea,
           span {
             flex: 1;
             font-size: 13px;
+            border: none;
           }
           input {
-            margin: 0 30px;
             outline: none;
-            border: none;
             border-bottom: 1px solid #cfd2d4;
           }
         }
         .description {
-          height: 100px;
-          padding-top: 20px;
+          height: fit-content;
           align-items: flex-start;
+
+          textarea {
+            outline: none;
+            resize: none;
+            border-bottom: 1px solid #cfd2d4;
+          }
         }
       }
 

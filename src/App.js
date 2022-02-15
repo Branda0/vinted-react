@@ -19,6 +19,7 @@ import Cookies from "js-cookie";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Publish from "./pages/Publish";
+import NotFound from "./pages/NotFound";
 
 //Components
 import Header from "./components/Header";
@@ -45,7 +46,7 @@ function App() {
   const [page, setPage] = useState(storedPage || 1);
   const [searchBar, setSearchBar] = useState(storedSearchBar || "");
   const [sort, setSort] = useState(storedSort || "");
-  const [limit, setLimit] = useState(storedLimit || 8);
+  const [limit, setLimit] = useState(storedLimit || 16);
   const [prices, setPrices] = useState([storedPriceMin || 0, storedPriceMax || 100]);
 
   useEffect(() => {
@@ -112,6 +113,7 @@ function App() {
                 setLimit={setLimit}
                 prices={prices}
                 setPrices={setPrices}
+                setLoginModal={setLoginModal}
               />
             }
           />
@@ -122,9 +124,11 @@ function App() {
               <Publish
                 setPublishValidateModal={setPublishValidateModal}
                 publishValidateModal={publishValidateModal}
+                setLoginModal={setLoginModal}
               />
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

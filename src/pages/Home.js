@@ -1,24 +1,47 @@
 import tear from "../assets/svg/tear.svg";
 
 import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import axios from "axios";
 
 import Product from "../components/Product";
 import Filter from "../components/Filter";
 
-const Home = ({ searchBar, page, setPage, sort, setSort, limit, setLimit, prices, setPrices }) => {
+const Home = ({
+  setLoginModal,
+  searchBar,
+  page,
+  setPage,
+  sort,
+  setSort,
+  limit,
+  setLimit,
+  prices,
+  setPrices,
+}) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  //Provenance de la route /publish si non authentifié => Navigate avec un location state à true
+  //affichage de la modal login et remise à false du state location
+  if (location.state) {
+    const { toLogin } = location.state;
+    setLoginModal(toLogin);
+    navigate(location.state, { replace: false });
+  }
+
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      /////////////////////////////////////
-      // UTILISER SA PROPRE DB PLUS TARD //
-      /////////////////////////////////////
-
+      //Le Reacteur BACK
       const response = await axios.get(
         `https://lereacteur-vinted-api.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
       );
+
+      //Own BACK
       // const response = await axios.get(
       //   `https://brandao-vinted.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
       // );

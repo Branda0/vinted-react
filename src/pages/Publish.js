@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
+// import Dropzone from "react-dropzone";
 import { useState } from "react";
-import Cookies from "js-cookie";
+import { Navigate } from "react-router-dom";
 
-const Publish = ({ setPublishValidateModal }) => {
+import Cookies from "js-cookie";
+import axios from "axios";
+
+const Publish = ({ setPublishValidateModal, setLoginModal }) => {
   const [picture, setPicture] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -16,6 +19,8 @@ const Publish = ({ setPublishValidateModal }) => {
 
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
+
+  const token = Cookies.get("userToken");
 
   const handlePublish = async (event) => {
     try {
@@ -38,7 +43,8 @@ const Publish = ({ setPublishValidateModal }) => {
         formData,
         {
           headers: {
-            authorization: `Bearer ${Cookies.get("userToken")}`,
+            authorization: `Bearer ${token}`,
+            "content-Type": "multipart/form/data",
           },
         }
       );
@@ -57,7 +63,9 @@ const Publish = ({ setPublishValidateModal }) => {
     }
   };
 
-  return (
+  return !token ? (
+    <Navigate to="/" state={{ toLogin: true }} />
+  ) : (
     <div className="publish-container">
       <div className="container">
         <h1>Vends ton article</h1>
@@ -90,11 +98,12 @@ const Publish = ({ setPublishValidateModal }) => {
               </div>
               <div className="input-container description">
                 <span>Décris ton article</span>
-                <input
+                <textarea
                   type="text"
-                  placeholder="ex: Chemise en coton, taille correctement"
+                  rows="5"
                   onChange={(event) => setDescription(event.target.value)}
-                />
+                  placeholder="ex: Chemise en coton, taille correctement"
+                ></textarea>
               </div>
             </div>
             <div className="input-category-container">
