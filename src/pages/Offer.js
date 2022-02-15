@@ -33,9 +33,10 @@ const Offer = () => {
         <div className="infos-container">
           <span className="price">{data.product_price} €</span>
           <div className="infos">
-            {data.product_details.map((elem) => {
+            {data.product_details.map((elem, index) => {
+              console.log("element ======>", elem);
               return (
-                <div>
+                <div key={index}>
                   <span className="type">{Object.keys(elem)[0]}</span>
                   <span className="value">{Object.values(elem)[0]}</span>
                 </div>
