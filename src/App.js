@@ -49,6 +49,9 @@ function App() {
   const [limit, setLimit] = useState(storedLimit || 16);
   const [prices, setPrices] = useState([storedPriceMin || 0, storedPriceMax || 100]);
 
+  console.log(searchBar);
+  console.log(typeof searchBar);
+
   useEffect(() => {
     localStorage.setItem("page", Number(page));
     localStorage.setItem("searchBar", String(searchBar));
