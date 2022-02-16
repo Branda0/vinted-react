@@ -29,17 +29,17 @@ const CheckoutForm = ({ amount, title }) => {
         name: userId,
       });
 
-      //   const response = await axios.post("https://brandao-vinted.herokuapp.com/payment", {
-      //     token: stripeResponse.token.id,
-      //     title: title,
-      //     amount: amount,
-      //   });
-
-      const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/payment", {
+      const response = await axios.post("https://brandao-vinted.herokuapp.com/payment", {
         token: stripeResponse.token.id,
         title: title,
         amount: amount,
       });
+
+      //   const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/payment", {
+      //     token: stripeResponse.token.id,
+      //     title: title,
+      //     amount: amount,
+      //   });
 
       if (response.data.status === "succeeded") {
         setPaymentSuccess(true);
