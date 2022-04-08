@@ -45,7 +45,7 @@ const Publish = ({ setPublishValidateModal, isLogged }) => {
         {
           headers: {
             authorization: `Bearer ${token}`,
-            "content-Type": "multipart/form/data",
+            "content-Type": "multipart/form-data",
           },
         }
       );

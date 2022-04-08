@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PublishValidate = ({ setPublisValidatehModal }) => {
+const PublishValidate = ({ setPublisValidateModal }) => {
   const navigate = useNavigate();
 
   return (
@@ -12,7 +12,7 @@ const PublishValidate = ({ setPublisValidatehModal }) => {
           icon="xmark"
           className="close-modal"
           onClick={() => {
-            setPublisValidatehModal(false);
+            setPublisValidateModal(false);
           }}
         />
         <h1> Félicitation</h1>
@@ -20,7 +20,7 @@ const PublishValidate = ({ setPublisValidatehModal }) => {
         <button
           className="publish-again"
           onClick={() => {
-            setPublisValidatehModal(false);
+            setPublisValidateModal(false);
             window.location.reload();
           }}
         >
@@ -29,7 +29,7 @@ const PublishValidate = ({ setPublisValidatehModal }) => {
         <span
           className="bottom-link"
           onClick={() => {
-            setPublisValidatehModal(false);
+            setPublisValidateModal(false);
             navigate("/");
           }}
         >

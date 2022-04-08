@@ -25,6 +25,7 @@ import Payment from "./pages/Payment";
 
 //Components
 import Header from "./components/Header";
+import Modal from "./components/Modal";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import PublishValidate from "./components/PublishValidate";
@@ -77,7 +78,7 @@ function App() {
 
   return (
     <Router>
-      <div className={`app-container ${(loginModal || signupModal) && "modal-no-scroll"}`}>
+      <div className="app-container">
         <Header
           setPage={setPage}
           searchBar={searchBar}
@@ -88,20 +89,26 @@ function App() {
           setLoginModal={setLoginModal}
           setToPublish={setToPublish}
         />
+
         {loginModal && (
-          <Login
-            setTokens={setTokens}
-            setLoginModal={setLoginModal}
-            setSignupModal={setSignupModal}
-            toPublish={toPublish}
-            setToPublish={setToPublish}
-            toPayment={toPayment}
-            setToPayment={setToPayment}
-          />
+          <Modal open={loginModal}>
+            <Login
+              loginModal={loginModal}
+              setTokens={setTokens}
+              setLoginModal={setLoginModal}
+              setSignupModal={setSignupModal}
+              toPublish={toPublish}
+              setToPublish={setToPublish}
+              toPayment={toPayment}
+              setToPayment={setToPayment}
+            />
+          </Modal>
         )}
-        {signupModal && (
+
+        {/* <Modal open={signupModal}>
           <Signup setTokens={setTokens} setLoginModal={setLoginModal} setSignupModal={setSignupModal} />
-        )}
+        </Modal> */}
+
         {publishValidateModal && (
           <PublishValidate
             setPublisValidatehModal={setPublishValidateModal}

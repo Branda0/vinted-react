@@ -23,7 +23,7 @@ const Login = ({
   const [loginError, setLoginError] = useState("");
 
   const navigate = useNavigate();
-
+  console.log("IN LOGIN");
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -56,53 +56,54 @@ const Login = ({
   };
 
   return (
-    <div className="modal-container">
-      <div className="login-modal">
-        <FontAwesomeIcon
-          icon="xmark"
-          className="close-modal"
-          onClick={() => {
-            setLoginModal(false);
-            setToPublish(false);
+    // <div className={`modal-container`}>
+    <div className="login-modal">
+      <FontAwesomeIcon
+        icon="xmark"
+        className="close-modal"
+        onClick={() => {
+          setLoginModal(false);
+          setToPublish(false);
+          // document.body.classList.remove("modal-no-scroll");
+        }}
+      />
+      <h1>Se connecter</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={email}
+          type="email"
+          placeholder="Adresse email"
+          onChange={(event) => {
+            setEmail(event.target.value);
           }}
         />
-        <h1>Se connecter</h1>
-        <form onSubmit={handleSubmit}>
+        <div className="form-input-password">
           <input
-            value={email}
-            type="email"
-            placeholder="Adresse email"
+            className="input"
+            type={passwordVisibility ? "text" : "password"}
+            placeholder="Mot de passe"
             onChange={(event) => {
-              setEmail(event.target.value);
+              setPassword(event.target.value);
             }}
           />
-          <div className="form-input-password">
-            <input
-              className="input"
-              type={passwordVisibility ? "text" : "password"}
-              placeholder="Mot de passe"
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-            <span onClick={() => setPasswordVisibility(!passwordVisibility)} className="eye-icon">
-              <FontAwesomeIcon icon="eye" />
-            </span>
-          </div>
-          {loginError && <span className="error-msg">{loginError}</span>}
-          <button type="submit">Se connecter</button>
-        </form>
-        <span
-          className="bottom-link"
-          onClick={() => {
-            setLoginModal(false);
-            setSignupModal(true);
-          }}
-        >
-          Pas encore de compte ? Inscris-toi !
-        </span>
-      </div>
+          <span onClick={() => setPasswordVisibility(!passwordVisibility)} className="eye-icon">
+            <FontAwesomeIcon icon="eye" />
+          </span>
+        </div>
+        {loginError && <span className="error-msg">{loginError}</span>}
+        <button type="submit">Se connecter</button>
+      </form>
+      <span
+        className="bottom-link"
+        onClick={() => {
+          setLoginModal(false);
+          setSignupModal(true);
+        }}
+      >
+        Pas encore de compte ? Inscris-toi !
+      </span>
     </div>
+    // </div>
   );
 };
 

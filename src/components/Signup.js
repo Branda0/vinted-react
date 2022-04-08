@@ -44,69 +44,67 @@ const Signup = ({ setTokens, setSignupModal, setLoginModal }) => {
   };
 
   return (
-    <div className="modal-container">
-      <div className="signup-modal">
-        <FontAwesomeIcon icon="xmark" className="close-modal" onClick={() => setSignupModal(false)} />
-        <h1>S'inscrire</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            value={name}
-            type="text"
-            placeholder="Nom d'utilisateur"
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          />
-          <input
-            value={email}
-            type="email"
-            placeholder="Email"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-          <div className="form-input-password">
-            <input
-              className="input"
-              value={password}
-              type={passwordVisibility ? "text" : "password"}
-              placeholder="Mot de passe"
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-            <span onClick={() => setPasswordVisibility(!passwordVisibility)} className="eye-icon">
-              <FontAwesomeIcon icon="eye" />
-            </span>
-          </div>
-          <div className="form-newsletter">
-            <input
-              value={newsletter}
-              type="checkbox"
-              onChange={(event) => {
-                setNewsletter(event.target.checked);
-              }}
-            />
-            <span>S'inscrire à notre newsletter</span>
-          </div>
-
-          <p>
-            En m'inscrivant je confirme avoir lu et accepté les Termes & Conditions et Politique de
-            Confidentialité de Vinted. Je confirme avoir au moins 18 ans.
-          </p>
-          {signupError && <span className="error-msg">{signupError}</span>}
-          <button type="submit">S'inscrire</button>
-        </form>
-        <span
-          className="bottom-link"
-          onClick={() => {
-            setSignupModal(false);
-            setLoginModal(true);
+    <div className="signup-modal">
+      <FontAwesomeIcon icon="xmark" className="close-modal" onClick={() => setSignupModal(false)} />
+      <h1>S'inscrire</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={name}
+          type="text"
+          placeholder="Nom d'utilisateur"
+          onChange={(event) => {
+            setName(event.target.value);
           }}
-        >
-          Tu as déjà un compte ? Connecte-toi !
-        </span>
-      </div>
+        />
+        <input
+          value={email}
+          type="email"
+          placeholder="Email"
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+        />
+        <div className="form-input-password">
+          <input
+            className="input"
+            value={password}
+            type={passwordVisibility ? "text" : "password"}
+            placeholder="Mot de passe"
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+          <span onClick={() => setPasswordVisibility(!passwordVisibility)} className="eye-icon">
+            <FontAwesomeIcon icon="eye" />
+          </span>
+        </div>
+        <div className="form-newsletter">
+          <input
+            value={newsletter}
+            type="checkbox"
+            onChange={(event) => {
+              setNewsletter(event.target.checked);
+            }}
+          />
+          <span>S'inscrire à notre newsletter</span>
+        </div>
+
+        <p>
+          En m'inscrivant je confirme avoir lu et accepté les Termes & Conditions et Politique de
+          Confidentialité de Vinted. Je confirme avoir au moins 18 ans.
+        </p>
+        {signupError && <span className="error-msg">{signupError}</span>}
+        <button type="submit">S'inscrire</button>
+      </form>
+      <span
+        className="bottom-link"
+        onClick={() => {
+          setSignupModal(false);
+          setLoginModal(true);
+        }}
+      >
+        Tu as déjà un compte ? Connecte-toi !
+      </span>
     </div>
   );
 };
