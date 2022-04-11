@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect } from "react";
 
 const getScrollBarWidth = () => {
   // Creating invisible container
@@ -21,28 +22,18 @@ const getScrollBarWidth = () => {
   return scrollbarWidth;
 };
 
-// scrollBarStyle.marginRight = `${getScrollBarWidth()}px`;
+const Modal = ({ children }) => {
+  useEffect(() => {
+    document.body.classList.add("modal-no-scroll");
+    document.body.style.marginRight = `${getScrollBarWidth()}px`;
 
-const Modal = ({ children, open }) => {
-  var scrollBarStyle = document.createElement("style");
-  scrollBarStyle.type = "text/css";
-  scrollBarStyle.innerHTML = `.cssClass { margin-right: ${getScrollBarWidth}px; }`;
-  document.getElementsByTagName("head")[0].appendChild(scrollBarStyle);
-  //   if (open) {
-  //   document.body.classList.add(scrollBarStyle); // removing scrollBar width from body width to disable content right/left shift when opening modal
-  document.body.classList.add("cssClass");
-  document.body.classList.add("modal-no-scroll");
+    return () => {
+      document.body.classList.remove("modal-no-scroll");
+      document.body.style.marginRight = "0px";
+    };
+  }, []);
 
-  return createPortal(
-    <div className="modal">
-      <div className="content">{children}</div>
-    </div>,
-    document.getElementById("modal_root")
-  );
-  //   } else {
-  //     document.body.style.marginRight = `0px`;
-  //     return null;
-  //   }
+  return createPortal(<div className="modal">{children}</div>, document.getElementById("modal_root"));
 };
 
 export default Modal;

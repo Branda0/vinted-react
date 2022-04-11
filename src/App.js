@@ -89,9 +89,8 @@ function App() {
           setLoginModal={setLoginModal}
           setToPublish={setToPublish}
         />
-
         {loginModal && (
-          <Modal open={loginModal}>
+          <Modal>
             <Login
               loginModal={loginModal}
               setTokens={setTokens}
@@ -104,16 +103,18 @@ function App() {
             />
           </Modal>
         )}
-
-        {/* <Modal open={signupModal}>
-          <Signup setTokens={setTokens} setLoginModal={setLoginModal} setSignupModal={setSignupModal} />
-        </Modal> */}
-
+        {signupModal && (
+          <Modal>
+            <Signup setTokens={setTokens} setLoginModal={setLoginModal} setSignupModal={setSignupModal} />
+          </Modal>
+        )}
         {publishValidateModal && (
-          <PublishValidate
-            setPublisValidatehModal={setPublishValidateModal}
-            publishValidateModal={publishValidateModal}
-          />
+          <Modal>
+            <PublishValidate
+              setPublisValidateModal={setPublishValidateModal}
+              publishValidateModal={publishValidateModal}
+            />
+          </Modal>
         )}
         <Routes>
           <Route

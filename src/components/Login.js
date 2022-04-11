@@ -56,7 +56,6 @@ const Login = ({
   };
 
   return (
-    // <div className={`modal-container`}>
     <div className="login-modal">
       <FontAwesomeIcon
         icon="xmark"
@@ -64,7 +63,6 @@ const Login = ({
         onClick={() => {
           setLoginModal(false);
           setToPublish(false);
-          // document.body.classList.remove("modal-no-scroll");
         }}
       />
       <h1>Se connecter</h1>
@@ -103,7 +101,6 @@ const Login = ({
         Pas encore de compte ? Inscris-toi !
       </span>
     </div>
-    // </div>
   );
 };
 
