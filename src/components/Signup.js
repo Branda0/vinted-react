@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import axios from "axios";
 
@@ -33,7 +33,6 @@ const Signup = ({ setTokens, setSignupModal, setLoginModal }) => {
       console.log(response.data);
       setTokens(response.data.token, response.data._id);
       setSignupModal(false);
-      // setSignupError("");
     } catch (error) {
       if (error.response.status === 400) {
         setSignupError("Paramètres manquants");

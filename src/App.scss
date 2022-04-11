@@ -923,6 +923,44 @@ body {
   }
 }
 
+//NOT FOUND PAGE
+.notfound-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  .parallelogram-background {
+    .message {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      position: relative;
+
+      color: white;
+
+      &::before {
+        content: "";
+        width: 120%;
+        height: 140%;
+        transform: skew(-20deg);
+        background-color: #09b0ba;
+        top: -20%;
+        left: -10%;
+        position: absolute;
+        z-index: -1;
+      }
+    }
+  }
+
+  .link-home {
+    color: #09b0ba;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
 // .filter-bar {
 //   height: 60px;
 //   background-color: white;

@@ -11,18 +11,22 @@ const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Own back
-      const response = await axios.get(`https://brandao-vinted.herokuapp.com/offer/${id}`);
+      try {
+        // Own back
+        // const response = await axios.get(`https://brandao-vinted.herokuapp.com/offer/${id}`);
 
-      // LeReacteur back
-      // const response = await axios.get(`https://lereacteur-vinted-api.herokuapp.com/offer/${id}`);
+        // LeReacteur back
+        const response = await axios.get(`https://lereacteur-vinted-api.herokuapp.com/offer/${id}`);
 
-      setData(response.data);
+        setData(response.data);
+      } catch (error) {
+        navigate("/NotFound");
+      }
       setIsLoading(false);
     };
 
     fetchData();
-  }, [id]);
+  }, [id, navigate]);
 
   return isLoading ? (
     <span>Page Loading</span>

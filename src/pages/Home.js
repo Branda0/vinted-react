@@ -37,14 +37,14 @@ const Home = ({
   useEffect(() => {
     const fetchData = async () => {
       //Le Reacteur BACK
-      // const response = await axios.get(
-      //   `https://lereacteur-vinted-api.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
-      // );
+      const response = await axios.get(
+        `https://lereacteur-vinted-api.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
+      );
 
       //Own BACK
-      const response = await axios.get(
-        `https://brandao-vinted.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
-      );
+      // const response = await axios.get(
+      //   `https://brandao-vinted.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
+      // );
 
       setData(response.data);
       setIsLoading(false);
