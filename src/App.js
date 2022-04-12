@@ -9,6 +9,7 @@ import {
   faCaretDown,
   faPlus,
   faSpinner,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useEffect } from "react";
@@ -30,7 +31,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import PublishValidate from "./components/PublishValidate";
 
-library.add(faEye, faXmark, faMagnifyingGlass, faCaretUp, faCaretDown, faSpinner, faPlus);
+library.add(faEye, faXmark, faMagnifyingGlass, faCaretUp, faCaretDown, faSpinner, faPlus, faBars);
 
 function App() {
   const [isLogged, setIsLogged] = useState(Cookies.get("userToken") ? true : false);

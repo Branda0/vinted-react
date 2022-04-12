@@ -23,7 +23,7 @@ const Login = ({
   const [loginError, setLoginError] = useState("");
 
   const navigate = useNavigate();
-  console.log("IN LOGIN");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

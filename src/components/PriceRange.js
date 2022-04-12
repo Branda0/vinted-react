@@ -15,7 +15,6 @@ const PriceRange = ({ values, setPrices }) => {
         onChange={(values) => setPrices(values)}
         renderTrack={({ props, children }) => (
           <div
-            className="yo"
             onMouseDown={props.onMouseDown}
             onTouchStart={props.onTouchStart}
             style={{
@@ -45,9 +44,9 @@ const PriceRange = ({ values, setPrices }) => {
             </div>
           </div>
         )}
-        renderThumb={({ index, props, isDragged }) => (
+        renderThumb={({ index, props }) => (
           <div
-            className="yes"
+            className="thumb"
             {...props}
             style={{
               ...props.style,

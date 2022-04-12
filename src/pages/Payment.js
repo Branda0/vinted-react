@@ -25,8 +25,6 @@ const Payment = ({ isLogged }) => {
     const tax = productPrice * 0.1;
     const totalPrice = (productPrice + deliveryCost + tax).toFixed(2);
 
-    console.log("isLogged =====>", isLogged);
-    console.log("data =====>", data);
     return !isLogged ? (
       <Navigate to="/" state={{ toLogin: true }} />
     ) : (

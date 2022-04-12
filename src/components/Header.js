@@ -1,7 +1,8 @@
 import logo from "../assets/img/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const Header = ({
   setPage,
@@ -14,6 +15,9 @@ const Header = ({
   setToPublish,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [menu, setMenu] = useState(false);
 
   const handlePublishBtn = () => {
     if (isLogged) {
@@ -26,48 +30,75 @@ const Header = ({
 
   return (
     <div className="header">
-      <div className="container">
-        <div className="left-header">
-          <Link to="/">
-            <img className="header-logo" src={logo} alt="logo" />
-          </Link>
-          <div className="search-bar">
-            <input
-              type="text"
-              value={searchBar}
-              placeholder="Recherche des articles"
-              onChange={(event) => {
-                setSearchBar(event.target.value);
-                setPage(1);
-              }}
-            />
-            <div className="icon-container">
-              <FontAwesomeIcon className="search-icon" icon="magnifying-glass" />
-            </div>
+      <section className="top">
+        <div className="container">
+          <div className="left-header">
+            <Link to="/">
+              <img className="header-logo" src={logo} alt="logo" />
+            </Link>
+            {location.pathname === "/" && (
+              <div className="search-bar">
+                <input
+                  type="text"
+                  value={searchBar}
+                  placeholder="Recherche des articles"
+                  onChange={(event) => {
+                    setSearchBar(event.target.value);
+                    setPage(1);
+                  }}
+                />
+                <div className="icon-container">
+                  <FontAwesomeIcon className="search-icon" icon="magnifying-glass" />
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="right-header">
+            {isLogged ? (
+              <button
+                onClick={() => {
+                  setTokens(null, null);
+                  navigate("/");
+                }}
+                className="disconnect-btn"
+              >
+                Se déconnecter
+              </button>
+            ) : (
+              <div className="loggin-signup-btn-container ">
+                <button onClick={() => setSignupModal(true)}>S'inscrire</button>
+                <button onClick={() => setLoginModal(true)}>Se connecter</button>
+              </div>
+            )}
+            <button className="sale-btn" onClick={handlePublishBtn}>
+              Vends tes articles
+            </button>
+          </div>
+          <div className="menu-icon" onClick={() => setMenu(!menu)}>
+            {menu ? <FontAwesomeIcon icon="xmark" /> : <FontAwesomeIcon icon="bars" />}
           </div>
         </div>
-        <div className="right-header">
-          {isLogged ? (
-            <button
-              onClick={() => {
-                setTokens(null, null);
-                navigate("/");
-              }}
-              className="disconnect-btn"
-            >
-              Se déconnecter
-            </button>
-          ) : (
-            <div className="loggin-signup-btn-container ">
-              <button onClick={() => setSignupModal(true)}>S'inscrire</button>
-              <button onClick={() => setLoginModal(true)}>Se connecter</button>
+      </section>
+      <section className="bottom">
+        {location.pathname === "/" && (
+          <div className="container">
+            <div className="search-bar">
+              <input
+                type="text"
+                value={searchBar}
+                placeholder="Recherche des articles"
+                onChange={(event) => {
+                  setSearchBar(event.target.value);
+                  setPage(1);
+                }}
+              />
+              <div className="icon-container">
+                <FontAwesomeIcon className="search-icon" icon="magnifying-glass" />
+              </div>
             </div>
-          )}
-          <button className="sale-btn" onClick={handlePublishBtn}>
-            Vends tes articles
-          </button>
-        </div>
-      </div>
+          </div>
+        )}
+      </section>
     </div>
   );
 };

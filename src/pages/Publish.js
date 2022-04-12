@@ -64,9 +64,7 @@ const Publish = ({ setPublishValidateModal, isLogged }) => {
     }
   };
 
-  return !isLogged ? (
-    <Navigate to="/" state={{ toLogin: true }} />
-  ) : (
+  return isLogged ? (
     <div className="publish-container">
       <div className="container">
         <h1>Vends ton article</h1>
@@ -170,6 +168,8 @@ const Publish = ({ setPublishValidateModal, isLogged }) => {
         )}
       </div>
     </div>
+  ) : (
+    <Navigate to="/" state={{ toLogin: true }} />
   );
 };
 
