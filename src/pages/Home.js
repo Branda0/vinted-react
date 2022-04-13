@@ -7,6 +7,7 @@ import axios from "axios";
 
 import Product from "../components/Product";
 import Filter from "../components/Filter";
+import PageSelector from "../components/PageSelector";
 
 const Home = ({
   setLoginModal,
@@ -62,17 +63,23 @@ const Home = ({
       <div className="hero-container">
         <img src={tear} alt="hero-bottom-tear" className="tear" />
       </div>
-      <Filter
-        count={data.count}
-        page={page}
-        setPage={setPage}
-        sort={sort}
-        setSort={setSort}
-        limit={limit}
-        setLimit={setLimit}
-        prices={prices}
-        setPrices={setPrices}
-      />
+      <div className="filter-and-page-selector">
+        <div className="container">
+          <Filter
+            count={data.count}
+            page={page}
+            setPage={setPage}
+            sort={sort}
+            setSort={setSort}
+            limit={limit}
+            setLimit={setLimit}
+            prices={prices}
+            setPrices={setPrices}
+          />
+          <PageSelector count={data.count} page={page} limit={limit} setPage={setPage} />
+        </div>
+      </div>
+
       <div className="products-container">
         <div className="container">
           {data.offers.map((product) => {
@@ -80,6 +87,7 @@ const Home = ({
           })}
         </div>
       </div>
+      <PageSelector count={data.count} page={page} limit={limit} setPage={setPage} />
     </div>
   );
 };
