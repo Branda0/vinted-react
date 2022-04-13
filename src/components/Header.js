@@ -79,8 +79,8 @@ const Header = ({
           </div>
         </div>
       </section>
-      <section className="bottom">
-        {location.pathname === "/" && (
+      {location.pathname === "/" && (
+        <section className="bottom">
           <div className="container">
             <div className="search-bar">
               <input
@@ -97,8 +97,8 @@ const Header = ({
               </div>
             </div>
           </div>
-        )}
-      </section>
+        </section>
+      )}
     </div>
   );
 };

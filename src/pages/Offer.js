@@ -33,27 +33,32 @@ const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
   ) : (
     <div className="offer-container">
       <div className="container">
-        <div className="imgs-container" style={{ backgroundImage: `url(${data.product_image.secure_url})` }}>
-          <img src="" alt="" />
-        </div>
+        <img className="product-img" src={data.product_image.secure_url} alt="product" />
         <div className="infos-container">
-          <span className="price">{data.product_price} €</span>
-          <div className="infos">
-            {data.product_details.map((elem, index) => {
-              return (
-                <div key={index}>
-                  <span className="type">{Object.keys(elem)[0]}</span>
-                  <span className="value">{Object.values(elem)[0]}</span>
-                </div>
-              );
-            })}
-          </div>
-          <span className="product-name">{data.product_name}</span>
-          <span className="product-description">{data.product_description}</span>
-          <div className="user">
-            <img className="user-photo" alt="user" src={data.owner.account.avatar?.secure_url} />
-            <span className="user-name">{data.owner.account.username}</span>
-          </div>
+          <section>
+            <div className="top">
+              <span className="price">{data.product_price} €</span>
+              <div className="infos">
+                {data.product_details.map((elem, index) => {
+                  return (
+                    <div key={index}>
+                      <span className="type">{Object.keys(elem)[0]}</span>
+                      <span className="value">{Object.values(elem)[0]}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div>
+              <span className="product-name">{data.product_name}</span>
+              <span className="product-description">{data.product_description}</span>
+              <div className="user">
+                <img className="user-photo" alt="user" src={data.owner.account.avatar?.secure_url} />
+                <span className="user-name">{data.owner.account.username}</span>
+              </div>
+            </div>
+          </section>
+
           <button
             className="buy-btn"
             onClick={() => {
