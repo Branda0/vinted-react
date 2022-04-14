@@ -17,7 +17,7 @@ const Header = ({
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [menu, setMenu] = useState(false);
+  const [burgerMenu, setBurgerMenu] = useState(false);
 
   const handlePublishBtn = () => {
     if (isLogged) {
@@ -74,11 +74,36 @@ const Header = ({
               Vends tes articles
             </button>
           </div>
-          <div className="menu-icon" onClick={() => setMenu(!menu)}>
-            {menu ? <FontAwesomeIcon icon="xmark" /> : <FontAwesomeIcon icon="bars" />}
+          <div className="menu-icon" onClick={() => setBurgerMenu(!burgerMenu)}>
+            {burgerMenu ? <FontAwesomeIcon icon="xmark" /> : <FontAwesomeIcon icon="bars" />}
           </div>
         </div>
       </section>
+      {burgerMenu && (
+        <section className="burger-menu-open">
+          <div className="container">
+            <button className="sale-btn" onClick={handlePublishBtn}>
+              Vends tes articles
+            </button>
+            {isLogged ? (
+              <button
+                onClick={() => {
+                  setTokens(null, null);
+                  navigate("/");
+                }}
+                className="disconnect-btn"
+              >
+                Se déconnecter
+              </button>
+            ) : (
+              <div className="loggin-signup-btn-container ">
+                <button onClick={() => setSignupModal(true)}>S'inscrire</button>
+                <button onClick={() => setLoginModal(true)}>Se connecter</button>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
       {location.pathname === "/" && (
         <section className="bottom">
           <div className="container">

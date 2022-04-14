@@ -290,9 +290,68 @@ body {
 .header {
   .container {
     display: flex;
-    width: 100%;
+    flex: 1;
     align-items: center;
     justify-content: center;
+  }
+
+  .burger-menu-open {
+    display: none;
+    border-top: 1px solid #ececec;
+    padding: 7px 0;
+    // transform: scale(0.5);
+    transition: transform 200ms ease;
+    animation: open-menu 0.2s linear;
+
+    // border: 2px solid blue;
+
+    .container {
+      flex-direction: column;
+
+      button {
+        height: 30px;
+        border: none;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      & > button {
+        width: 100%;
+        color: white;
+      }
+      .disconnect-btn {
+        background-color: rgb(236, 80, 53);
+      }
+      .sale-btn {
+        background-color: #09b0ba;
+        margin-bottom: 5px;
+      }
+      .loggin-signup-btn-container {
+        width: 100%;
+        display: flex;
+        gap: 7px;
+        button {
+          flex: 1;
+
+          border: 1px solid #09b0ba;
+          color: #09b0ba;
+          background-color: white;
+        }
+      }
+    }
+  }
+
+  @keyframes open-menu {
+    from {
+      transform: translateY(-50%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   .search-bar {
@@ -1086,9 +1145,15 @@ body {
       .right-header {
         display: none;
       }
+
       .menu-icon {
         display: flex;
       }
+    }
+
+    .burger-menu-open {
+      display: flex;
+      animation: open-menu 0.2s linear;
     }
 
     .bottom {
