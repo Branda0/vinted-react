@@ -48,20 +48,20 @@ const Publish = ({ setPublishValidateModal, isLogged }) => {
       //   }
       // );
 
-      // const response = await axios.post("https://brandao-vinted.herokuapp.com/offer/publish", formData, {
-      //   headers: {
-      //     authorization: `Bearer ${Cookies.get("userToken")}`,
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // });
-
-      //LOCAL SERVER -> need to run vinted express on local
-      const response = await axios.post("http://localhost:4000/offer/publish", formData, {
+      const response = await axios.post("https://brandao-vinted.herokuapp.com/offer/publish", formData, {
         headers: {
           authorization: `Bearer ${Cookies.get("userToken")}`,
           "Content-Type": "multipart/form-data",
         },
       });
+
+      //LOCAL SERVER -> need to run vinted express on local
+      // const response = await axios.post("http://localhost:4000/offer/publish", formData, {
+      //   headers: {
+      //     authorization: `Bearer ${Cookies.get("userToken")}`,
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
 
       setIsUploading(false);
       setPublishValidateModal(true);
