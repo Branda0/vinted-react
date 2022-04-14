@@ -27,15 +27,20 @@ const Login = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/login", {
-        email: email,
-        password: password,
-      });
+      // const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/login", {
+      //   email: email,
+      //   password: password,
+      // });
 
       // const response = await axios.post("https://brandao-vinted.herokuapp.com/user/login", {
       //   email: email,
       //   password: password,
       // });
+
+      const response = await axios.post("http://localhost:4000/user/login", {
+        email: email,
+        password: password,
+      });
 
       setTokens(response.data.token, response.data._id);
       setLoginModal(false);

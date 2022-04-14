@@ -17,12 +17,12 @@ const Signup = ({ setTokens, setSignupModal, setLoginModal }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/signup", {
-        email: email,
-        username: name,
-        password: password,
-        newsletter: newsletter,
-      });
+      // const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/signup", {
+      //   email: email,
+      //   username: name,
+      //   password: password,
+      //   newsletter: newsletter,
+      // });
 
       // const response = await axios.post("https://brandao-vinted.herokuapp.com/user/signup", {
       //   email: email,
@@ -30,6 +30,14 @@ const Signup = ({ setTokens, setSignupModal, setLoginModal }) => {
       //   password: password,
       //   newsletter: newsletter,
       // });
+
+      const response = await axios.post("http://localhost:4000/user/signup", {
+        email: email,
+        username: name,
+        password: password,
+        newsletter: newsletter,
+      });
+
       console.log(response.data);
       setTokens(response.data.token, response.data._id);
       setSignupModal(false);

@@ -26,6 +26,7 @@ const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
     };
 
     fetchData();
+    return () => {};
   }, [id, navigate]);
 
   return isLoading ? (

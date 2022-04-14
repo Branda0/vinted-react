@@ -37,7 +37,7 @@ const Home = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      //Le Reacteur BACK
+      //Le Reacteur DB BACK
       const response = await axios.get(
         `https://lereacteur-vinted-api.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
       );

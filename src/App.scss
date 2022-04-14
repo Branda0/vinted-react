@@ -22,6 +22,21 @@ body {
   margin: 0 auto;
 }
 
+//Loading spinner
+.spinner-icon {
+  font-size: 14px;
+  animation: spinnerRotation 1s linear infinite;
+}
+
+@keyframes spinnerRotation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
 // MODALS (signup, login, publish validation)
 .modal {
   left: 0;
@@ -794,6 +809,12 @@ body {
           align-items: center;
           justify-content: center;
 
+          .preview {
+            padding: 10px;
+            height: 100%;
+            object-fit: contain;
+          }
+
           .add-photo-input {
             border-radius: 5px;
             background-color: #09b0ba;
@@ -827,7 +848,6 @@ body {
           display: flex;
           align-items: center;
           padding: 20px 30px;
-          height: 60px;
           border-bottom: 1px solid #cfd2d4;
 
           input,
@@ -836,6 +856,9 @@ body {
             flex: 1;
             font-size: 13px;
             border: none;
+          }
+          span {
+            margin-right: 10px;
           }
           input {
             outline: none;
@@ -861,15 +884,16 @@ body {
       .price {
         height: 100px;
       }
-      .bottom-btn {
+      .publish-btn {
         display: flex;
-        margin: 40px 0px 60px 0;
+        margin: 30px 0;
         justify-content: flex-end;
         background-color: #ebecee;
         box-shadow: none;
 
         button {
           cursor: pointer;
+          width: 200px;
           font-size: 16px;
           background-color: #09b0ba;
           padding: 10px;
@@ -943,21 +967,6 @@ body {
     }
     .checkoutForm {
       padding: 30px 30px;
-
-      .spinner-icon {
-        font-size: 14px;
-        animation: spinnerRotation 1s linear infinite;
-        // animation: spinnerRotation 0.3s ease;
-      }
-
-      @keyframes spinnerRotation {
-        0% {
-          transform: rotateZ(0deg);
-        }
-        100% {
-          transform: rotateZ(360deg);
-        }
-      }
 
       .payment-success {
         display: flex;
@@ -1260,6 +1269,42 @@ body {
       .product-img {
         margin: 0;
         width: 100%;
+      }
+    }
+  }
+
+  .publish-container {
+    .container {
+      form {
+        .input-category-container {
+          .input-container {
+            padding: 20px;
+          }
+        }
+
+        .publish-btn {
+          button {
+            width: 100%;
+          }
+        }
+
+        .photo-upload {
+          height: 150px;
+          padding: 20px;
+
+          .drop-zone {
+            .add-photo-input {
+              .input-label {
+                .plus-icon {
+                  font-size: 20px;
+                }
+                span {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
