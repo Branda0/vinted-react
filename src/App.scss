@@ -946,7 +946,17 @@ body {
 
       .spinner-icon {
         font-size: 14px;
-        animation: rotation 0.02s infinite linear;
+        animation: spinnerRotation 1s linear infinite;
+        // animation: spinnerRotation 0.3s ease;
+      }
+
+      @keyframes spinnerRotation {
+        0% {
+          transform: rotateZ(0deg);
+        }
+        100% {
+          transform: rotateZ(360deg);
+        }
       }
 
       .payment-success {
