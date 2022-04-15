@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loader from "../components/Loader";
 
 const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
   const [data, setData] = useState();
@@ -31,7 +32,7 @@ const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
   }, [id, navigate]);
 
   return isLoading ? (
-    <span>Page Loading</span>
+    <Loader />
   ) : (
     <div className="offer-container">
       <div className="container">

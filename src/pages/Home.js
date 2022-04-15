@@ -8,6 +8,7 @@ import axios from "axios";
 import Product from "../components/Product";
 import Filter from "../components/Filter";
 import PageSelector from "../components/PageSelector";
+import Loader from "../components/Loader";
 
 const Home = ({
   setLoginModal,
@@ -57,7 +58,7 @@ const Home = ({
   }, [page, sort, limit, prices, searchBar]);
 
   return isLoading ? (
-    <span>Page Loading</span>
+    <Loader />
   ) : (
     <div className="content-container">
       <div className="hero-container">

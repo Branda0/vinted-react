@@ -286,7 +286,6 @@ body {
 }
 
 // HEADER //
-
 .header {
   .container {
     display: flex;
@@ -1092,8 +1091,84 @@ body {
   }
 }
 
-// RESPONSIVE MEDIA QUERIES
+//SPINNER LOADER
+$color1: #09b0ba;
 
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 10px;
+
+  span {
+    text-transform: uppercase;
+    color: #09b0ba;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  svg {
+    width: 35px;
+    fill: none;
+  }
+  .load {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 570;
+    stroke-width: 15px;
+    stroke: #09b0ba;
+    &.one {
+      animation: load 1.5s infinite;
+    }
+    &.two {
+      animation: load 1.5s infinite;
+      animation-delay: 0.1s;
+    }
+    &.three {
+      animation: load 1.5s infinite;
+      animation-delay: 0.2s;
+    }
+  }
+
+  .point {
+    animation: bounce 1s infinite ease-in-out;
+    fill: #09b0ba;
+    &.one {
+      animation-delay: 0s;
+    }
+    &.two {
+      animation-delay: 0.1s;
+    }
+    &.three {
+      animation-delay: 0.2s;
+    }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+@keyframes load {
+  0% {
+    stroke-dashoffset: 570;
+  }
+  50% {
+    stroke-dashoffset: 530;
+  }
+  100% {
+    stroke-dashoffset: 570;
+    transform: rotate(360deg);
+  }
+}
+
+// RESPONSIVE MEDIA QUERIES
 @media (max-width: 1280px) {
   .container {
     margin: 0 15px;
