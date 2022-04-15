@@ -12,10 +12,6 @@ const Payment = ({ isLogged }) => {
     console.log(location);
     const { data } = location.state;
 
-    // Lereacteur api-key
-    // const stripePromise = loadStripe("pk_test_5z9rSB8XwuAOihoBixCMfL6X");
-
-    //own api-key
     const stripePromise = loadStripe(
       "pk_test_51KTY1ECOawDt6ac8zSW8cjOsGDt5H2UTBoq7nHnRBa2rb3bgxHWFXj6GLpJx6PLE4GV1EVsUSrAn09cI5Wuz4bbC009tgP6zJr"
     );

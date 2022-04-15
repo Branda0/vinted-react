@@ -8,15 +8,16 @@ const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
   const { id } = useParams();
 
   const navigate = useNavigate();
+  console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Own back
-        // const response = await axios.get(`https://brandao-vinted.herokuapp.com/offer/${id}`);
+        const response = await axios.get(`https://brandao-vinted.herokuapp.com/offer/${id}`);
 
         // LeReacteur back
-        const response = await axios.get(`https://lereacteur-vinted-api.herokuapp.com/offer/${id}`);
+        // const response = await axios.get(`https://lereacteur-vinted-api.herokuapp.com/offer/${id}`);
 
         setData(response.data);
       } catch (error) {
@@ -52,7 +53,7 @@ const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
             </div>
             <div>
               <span className="product-name">{data.product_name}</span>
-              <span className="product-description">{data.product_description}</span>
+              <p className="product-description">{data.product_description}</p>
               <div className="user">
                 <img className="user-photo" alt="user" src={data.owner.account.avatar?.secure_url} />
                 <span className="user-name">{data.owner.account.username}</span>

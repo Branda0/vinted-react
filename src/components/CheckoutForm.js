@@ -35,12 +35,6 @@ const CheckoutForm = ({ amount, title }) => {
         amount: amount,
       });
 
-      //   const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/payment", {
-      //     token: stripeResponse.token.id,
-      //     title: title,
-      //     amount: amount,
-      //   });
-
       if (response.data.status === "succeeded") {
         setPaymentSuccess(true);
         setIsSending(false);
