@@ -42,7 +42,6 @@ const Home = ({
       const response = await axios.get(
         `https://brandao-vinted.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
       );
-
       //Le Reacteur DB BACK
       // const response = await axios.get(
       //   `https://lereacteur-vinted-api.herokuapp.com/offers?title=${searchBar}&priceMin=${prices[0]}&priceMax=${prices[1]}&sort=${sort}&page=${page}&limit=${limit}`
