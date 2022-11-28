@@ -24,7 +24,7 @@ const Signup = ({ setTokens, setSignupModal, setLoginModal }) => {
       //   newsletter: newsletter,
       // });
 
-      const response = await axios.post("https://brandao-vinted.herokuapp.com/user/signup", {
+      const response = await axios.post("https://branda0-vinted.up.railway.app/user/signup", {
         email: email,
         username: name,
         password: password,

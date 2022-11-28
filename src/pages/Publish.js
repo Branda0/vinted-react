@@ -48,7 +48,7 @@ const Publish = ({ setPublishValidateModal, isLogged }) => {
       //   }
       // );
 
-      const response = await axios.post("https://brandao-vinted.herokuapp.com/offer/publish", formData, {
+      const response = await axios.post("https://branda0-vinted.up.railway.app/offer/publish", formData, {
         headers: {
           authorization: `Bearer ${Cookies.get("userToken")}`,
           "Content-Type": "multipart/form-data",

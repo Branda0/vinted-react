@@ -32,7 +32,7 @@ const Login = ({
       //   password: password,
       // });
 
-      const response = await axios.post("https://brandao-vinted.herokuapp.com/user/login", {
+      const response = await axios.post("https://branda0-vinted.up.railway.app/user/login", {
         email: email,
         password: password,
       });

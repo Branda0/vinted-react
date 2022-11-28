@@ -15,7 +15,7 @@ const Offer = ({ setLoginModal, isLogged, setToPayment }) => {
     const fetchData = async () => {
       try {
         // Own back
-        const response = await axios.get(`https://brandao-vinted.herokuapp.com/offer/${id}`);
+        const response = await axios.get(`https://branda0-vinted.up.railway.app/offer/${id}`);
 
         // LeReacteur back
         // const response = await axios.get(`https://lereacteur-vinted-api.herokuapp.com/offer/${id}`);

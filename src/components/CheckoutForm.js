@@ -29,7 +29,7 @@ const CheckoutForm = ({ amount, title }) => {
         name: userId,
       });
 
-      const response = await axios.post("https://brandao-vinted.herokuapp.com/payment", {
+      const response = await axios.post("https://branda0-vinted.up.railway.app/payment", {
         token: stripeResponse.token.id,
         title: title,
         amount: amount,
